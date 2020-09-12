@@ -3,6 +3,10 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
+      #プロフィール画面に名前とプロフィールを表示
+      #名前、自己紹介、写真なので項目増える？
+      t.string :name, null: false
+      t.text :profile
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
