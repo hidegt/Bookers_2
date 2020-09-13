@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   root "homes#top"
   
   #マイページ用ルート
-  resources :users, :only => [:show]
-  #ヘッダーリンク
+  # :index
+  resources :users, :only => [:show, :edit, :update]
+  #ブック用ルート
+  # :edit :update :deleate
+  resources :books, only: [:new, :create, :index, :show]
   
+  #ヘッダーリンク
   get "home/about" => "homes#about"
   #root 'books#index'
 end
