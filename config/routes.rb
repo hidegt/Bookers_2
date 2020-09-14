@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   
   #マイページ用ルート
   # :index
-  resources :users, :only => [:show, :edit, :update]
+  resources :users, :only => [:show, :index, :edit, :update]
   #ブック用ルート
-  # :edit :update :deleate
-  resources :books, only: [:new, :create, :index, :show]
+  resources :books, only: [:create, :index, :show, :edit, :update, :destroy]
   
   #ヘッダーリンク
   get "home/about" => "homes#about"
