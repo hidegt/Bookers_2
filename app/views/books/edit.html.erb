@@ -1,0 +1,39 @@
+<!--books edit-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+		  <h1>Editing Book</h1>
+
+		  <!--error message-->
+        <% if @book.errors.any? %>
+          <div class="form-error">
+            <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+		  <%= form_with model:@book, url:"/books/#{@book.id}", local: true do |f| %>
+         <!--post form-->
+        <div class= "post">
+          <%= f.label :title %>
+          <br><%= f.text_field :title %></br>
+          <br><%= f.label :body %><br>
+          <%= f.text_area :body %>
+          <div class=" button"><%= f.submit 'Update Book' %></div>
+        </div>
+      <% end %>
+
+      <div class= "foot">
+       <%= link_to "show", "/books/#{@book.id}" %></td>
+        <div class= "back">
+          <%= link_to "Back", "/books" %>
+        </div>
+      </div>
+
+		</div>
+  </div>
+</div>
