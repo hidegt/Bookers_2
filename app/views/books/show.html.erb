@@ -1,20 +1,20 @@
-<div class="container">
-  <div class="row">
-    <%= render 'users/list', user: @user, book: @book %>
+<div class= "container">
+  <div class= "row">
+    <%= render 'users/list', user: @book_show.user, book: @book %>
       <!--books show-->
      <h1>Book detail</h1>
       <table>
         <tbody>
           <tr>
             <td>
-              <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-              <%= @user.name %>
+              <%= attachment_image_tag @book_show.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+              <%= @book_show.user.name %>
             </td>
-            <td><%= link_to @book.title, book_path(@book.id) %></td>
-            <td><%= @book.body %></td>
-            <td class="link"><%= link_to("Edit", edit_book_path(book.id) %></td>
+            <td><%= link_to @book_show.title, book_path(@book_show.id) %></td>
+            <td><%= @book_show.body %></td>
+            <td class= "link"><%= link_to "Edit", edit_book_path(@book_show.id) %></td>
             <td class= "link">
-              <%= link_to "Destroy",destroy_book_path(book.id), method: :delete,"data-confirm" => "Are you sure?" %>
+              <%= link_to "Destroy",book_path(@book_show.id), method: :delete,"data-confirm" => "Are you sure?" %>
             </td>
           </tr>
         </tbody>

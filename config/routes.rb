@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root "homes#top"
   
   #マイページ用ルート
-  # :index
   resources :users, :only => [:show, :index, :edit, :update]
   #ブック用ルート
   resources :books, only: [:create, :index, :show, :edit, :update, :destroy]

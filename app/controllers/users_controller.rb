@@ -2,11 +2,17 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   
   #新規登録、ログイン後のフラッシュshow page
-  #@bookのインスタンスを持ってくる
   def show
     @user = User.find(params[:id])
-    @books = @user.books.reverse_order
+    @books = @user.books
     @book = Book.new
+  end
+  
+  def index
+    @users = User.all
+    @user = User.find(params[:id])
+    @book = Book.new
+    @books = Book.all
   end
   
   def edit
