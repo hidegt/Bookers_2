@@ -1,24 +1,28 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   #新規登録、ログイン後のフラッシュshow page
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
   end
-  
+
   def index
     @users = User.all
-    @user = User.find(params[:id])
+    @user = current_user
     @book = Book.new
-    @books = Book.all
   end
-  
+
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+      render "edit"
+    else
+      redirect_to edit_user_path(@user)
+    end
   end
-  
+
   #ユーザー情報アップデートの
   def update
     @user = User.find(params[:id])
@@ -30,8 +34,8 @@ class UsersController < ApplicationController
       render ("edit_user_path(@user)")
     end
   end
-  
-  
+
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)

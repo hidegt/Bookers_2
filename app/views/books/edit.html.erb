@@ -20,15 +20,15 @@
          <!--post form-->
         <div class= "post">
           <%= f.label :title %>
-          <br><%= f.text_field :title %></br>
-          <br><%= f.label :body %><br>
-          <%= f.text_area :body %>
-          <div class=" button"><%= f.submit 'Update Book' %></div>
+          <br><%= f.text_field :title, class: "col-xs-12 book_title" %></br>
+          <br><%= f.label :opinion %><br>
+          <%= f.text_area :body, class: "col-xs-12 book_body" %>
+          <div class=" button"><%= f.submit 'Update Book', class: "btn btn-primary col-xs-12" %></div>
         </div>
       <% end %>
 
       <div class= "foot">
-       <%= link_to "show", "/books/#{@book.id}" %></td>
+       <%= link_to "Show", "/books/#{@book.id}" %></td>
         <div class= "back">
           <%= link_to "Back", "/books" %>
         </div>

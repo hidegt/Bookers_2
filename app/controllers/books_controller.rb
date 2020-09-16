@@ -23,12 +23,19 @@ class BooksController < ApplicationController
   end
 
   def show
+    #showのview用
     @book_show = Book.find(params[:id])
+    #新規投稿用(部分テンプレート)
     @book = Book.new
   end
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render "edit"
+    else
+      redirect_to books_path
+    end
   end
 
   def update
