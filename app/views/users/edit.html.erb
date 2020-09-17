@@ -1,11 +1,28 @@
-<h1>User info</h1>
-<%= form_with model:@user, local:true do |f| %>
-  <p>name</p>
-  <%= f.text_field :name, autofocus: true %>
-  <p>image</p>
-  <label class="control-label sr-only" for="inputEmail">ProfileImage</label>
-  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
-  <p>Introduction</p>
-  <%= f.text_field :introduction, autofocus: true %>
-  <%= f.submit "Update User" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>User info</h1>
+      <!--error message-->
+      <% if @user.errors.any? %>
+        <div class="form-error">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form_with model:@user, local:true do |f| %>
+        <p>name</p>
+        <%= f.text_field :name, autofocus: true %>
+        <p>image</p>
+        <label class="control-label sr-only" for="inputEmail">ProfileImage</label>
+        <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+        <p>Introduction</p>
+        <%= f.text_field :introduction, autofocus: true %><br>
+        <%= f.submit "Update User", class: "sub" %>
+      <% end %>
+    </div>
+  </div>
+</div>

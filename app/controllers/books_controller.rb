@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
-
-  #アクションの順番・・・
-
+#usersとbooksの両方にいれる
+before_action :authenticate_user!
+ 
   #新規投稿のフラッシュ
   def create
     @book = Book.new(book_params)

@@ -41,6 +41,11 @@ header span{
   text-align: center;
 }
 
+.form-error{
+  padding: 10px;
+  color: #ff0000;
+}
+
 // body
 .body{
   margin-top: 50px;
@@ -87,4 +92,9 @@ table{
 // login sign up
 .in{
   color: #3e3a38;
+}
+
+// submit user edit
+.sub{
+  margin-top: 10px;
 }

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #usersとbooksの両方にいれる
   before_action :authenticate_user!
 
   #新規登録、ログイン後のフラッシュshow page
@@ -16,10 +17,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user == current_user
-      render "edit"
-    else
-      redirect_to edit_user_path(@user)
+    #自分のアカウントでない人が編集しようとしたときに、不可にするための設定
+    #否定演算を使うことでコードが短くなる
+    if @user != current_user
+      redirect_to user_path(current_user)
     end
   end
 
@@ -30,11 +31,9 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated your information successfully."
       redirect_to user_path(current_user.id)
     else
-      @user = User.all
-      render ("edit_user_path(@user)")
+      render 'edit'
     end
   end
-
 
   private
   def user_params
