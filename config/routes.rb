@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   #マイページ用ルート
   resources :users, :only => [:show, :index, :edit, :update]
   #ブック用ルート
-  resources :books, only: [:create, :index, :show, :edit, :update, :destroy]
+  resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
+    resource :favorites, only: [:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
+  end
   
   #ヘッダーリンク
   get "home/about" => "homes#about"

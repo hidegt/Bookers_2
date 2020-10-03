@@ -27,6 +27,7 @@ before_action :authenticate_user!
     @book_show = Book.find(params[:id])
     #新規投稿用(部分テンプレート)
     @book = Book.new
+    @book_comment = BookComment.new
   end
 
   def edit

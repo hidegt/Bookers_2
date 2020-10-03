@@ -21,10 +21,16 @@
               <!--ルートパス (book.***)の***の部分は持ってきたい値をいれる。今回はユーザーページに行きたいので、book.userとなる-->
                 <%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
               <% end %>
-              
+
             </td>
             <td><%= link_to book.title, book_path(book.id) %></td>
             <td><%= book.body %></td>
+            <td>
+              <div id="favorites_buttons_<%= book.id %>">
+                 <%= render 'favorites/favorites', { book: book} %>
+                </div>
+            </td>
+            <td><%= link_to "コメント数：#{book.book_comments.count}", book_path(book.id) %></td>
           </tr>
           <% end %>
         </tbody>
