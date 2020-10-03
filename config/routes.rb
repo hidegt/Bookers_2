@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   root "homes#top"
   
   #マイページ用ルート
-  resources :users, :only => [:show, :index, :edit, :update]
+  resources :users, :only => [:show, :index, :edit, :update] do
+    member do
+      get :follow, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   #ブック用ルート
   resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]

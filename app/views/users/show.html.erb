@@ -26,8 +26,24 @@
             <th>introduction</th>
             <th><%= @user.introduction %></th>
           </tr>
+          <tr>
+            <th>follows</th>
+            <th><%= link_to @user.followed.count, follow_user_path(@user) %></th>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <th><%= link_to @user.follower.count, followers_user_path(@user) %></th>
+          </tr>
         </tbody>
       </table>
+      <!--フォローボタン-->
+      <% unless current_user?(@user) %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', unfollowing_user_path(@user.id), method: :POST, class: "btn btn-success" %>
+        <% else %>
+          <%= link_to 'フォローする', follow_user_path(@user.id), method: :POST, class: "btn btn-warning" %>
+        <% end %>
+      <% end %>
       <!--編集する場合の条件分岐-->
       <% if @user.id == current_user.id %>
           <!--編集用ボタン-->
