@@ -36,15 +36,12 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user  = User.find(params[:id])
+    @user = User.find(params[:id])
     @users = @user.followed
-    redirect_to request.referer
   end
 
-  def followers
-    @user  = User.find(params[:id])
-    @users = @user.followers
-    redirect_to request.referer
+  def follower
+    @user = User.find(params[:id])
   end
 
   private

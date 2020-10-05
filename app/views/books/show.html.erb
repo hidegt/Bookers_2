@@ -1,3 +1,13 @@
+<% if @book_comment.errors.any? %>
+  <div class="form-error">
+    <h2><%= pluralize(@book_comment.errors.count, "error") %> prohibited this book from being saved:</h2>
+    <ul>
+      <% @book_comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class= "container">
   <div class= "row">
     <%= render 'users/list', user: @book_show.user, book: @book %>

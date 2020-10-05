@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   #マイページ用ルート
   resources :users, :only => [:show, :index, :edit, :update] do
     member do
-      get :follow, :followers
+      get :follow, :follower
     end
+    resource :relationships, only: [:create, :destroy]
   end
-  resources :relationships, only: [:create, :destroy]
   #ブック用ルート
   resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
