@@ -36,4 +36,22 @@ class User < ApplicationRecord
   #intro 50letters max
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :introduction, length: { maximum: 50 }
+
+  #検索(前半、後半などの条件分岐)
+  #selfはこのモデル（今はuser）が対象だよ、という意味
+  #viewで入力したsearchとwordがsearch_controllerに行き、値をとってから、このmodelに
+  def self.search(search, word)
+    @user = User.all
+    if search == "forward"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "match"
+      @user = User.where("#{word}")
+    elsif search == "partical"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
 end
