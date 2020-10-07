@@ -1,3 +1,4 @@
 <!--課題６で使う機能-->
-$('#favorites_buttons_<%= @book_show.id %>').html("<%= j(render partial: 'favorites/favorites', locals: {book: @book_show}) %>");
+<!--like-->
+$('#favorites_buttons_<%= @book.id %>').html("<%= j(render partial: 'favorites/favorites', locals: {book: @book}) %>");
 
